@@ -1,4 +1,6 @@
 import pymongo
+import urllib2
+import json
 
 connection = pymongo.MongoClient('homer.stuy.edu')
 
@@ -31,4 +33,15 @@ def findZipWithScore(zipcode, score):
 #print findBorough('Manhattan')
 #print findZip('10017')
 #print findZipWithGrade('10017', 'A')
-print findZipWithScore('10017', 5)
+#print findZipWithScore('10017', 5)
+
+db = connection.neverGonnaGifYouUp
+
+collection = db.gifs
+
+u = urllib2.urlopen("http://api.giphy.com/v1/gifs/search?q=happy&api_key=dc6zaTOxFJmzC")
+x = u.read()
+data = json.loads(x)
+data = data['data']
+collection.insert_many(data)
+
