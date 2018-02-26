@@ -1,3 +1,7 @@
+''' 
+
+'''
+
 import pymongo
 import urllib2
 import json
@@ -25,6 +29,13 @@ def findZipWithGrade(zipcode, grade):
     return restaurants
     
 def findZipWithScore(zipcode, score):
+    restaurants = []
+    for restaurant in db.restaurants.find({'address.zipcode': zipcode, 'grades.score': {'$lt': score}}):
+        restaurants.append(restaurant)
+    return restaurants
+
+# does something clever - finds restaurants with a certain zipcode and cuisine
+def doSomethingClever():
     restaurants = []
     for restaurant in db.restaurants.find({'address.zipcode': zipcode, 'grades.score': {'$lt': score}}):
         restaurants.append(restaurant)
