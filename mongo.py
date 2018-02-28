@@ -1,5 +1,9 @@
 ''' 
+A collection of happy GIFs from Giphy
 
+http://api.giphy.com/v1/gifs/search?q=happy&api_key=dc6zaTOxFJmzC
+
+Creates db called neverGonnaGifYouUp with a collection called gifs
 '''
 
 import pymongo
